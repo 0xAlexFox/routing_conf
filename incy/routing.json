@@ -10,7 +10,7 @@
   "DomesticDNSIP": "77.88.8.8",
   "Geoipurl": "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat",
   "Geositeurl": "https://github.com/itdoginfo/allow-domains/releases/latest/download/geosite.dat",
-  "LastUpdated": "1784576327",
+  "LastUpdated": "1784576636",
   "DnsHosts": {
     "cloudflare-dns.com": "1.1.1.1"
   },
@@ -63,7 +63,6 @@
     "domain:tg.dev",
     "domain:tx.me",
     "domain:usercontent.dev",
-    "domain:ton.org",
     "domain:dis.gd",
     "domain:discord-activities.com",
     "domain:discord.co",
@@ -93,8 +92,6 @@
     "domain:fb.com",
     "domain:fbcdn.net",
     "domain:fbsbx.com",
-    "domain:internalfb.com",
-    "domain:meta.com",
     "full:amp-api-edge.apps.apple.com",
     "full:amp-api-updates.apps.apple.com",
     "full:bag.itunes.apple.com",
@@ -140,15 +137,7 @@
     "179.60.192.0/22",
     "185.60.216.0/22",
     "185.89.216.0/22",
-    "204.15.20.0/22",
-    "3.33.221.48/32",
-    "3.33.252.61/32",
-    "15.197.206.217/32",
-    "15.197.210.208/32",
-    "34.192.181.12/32",
-    "34.193.38.112/32",
-    "34.194.71.217/32",
-    "34.194.255.230/32"
+    "204.15.20.0/22"
   ],
   "BlockSites": [],
   "BlockIp": [],

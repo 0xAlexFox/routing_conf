@@ -19,7 +19,6 @@ DOMAIN-SUFFIX,telegram.org
 DOMAIN-SUFFIX,telegram.space
 DOMAIN-SUFFIX,telesco.pe
 DOMAIN-SUFFIX,tg.dev
-DOMAIN-SUFFIX,ton.org
 DOMAIN-SUFFIX,tx.me
 DOMAIN-SUFFIX,usercontent.dev
 
@@ -55,7 +54,5 @@ DOMAIN-SUFFIX,facebook.net
 DOMAIN-SUFFIX,fb.com
 DOMAIN-SUFFIX,fbcdn.net
 DOMAIN-SUFFIX,fbsbx.com
-DOMAIN-SUFFIX,internalfb.com
-DOMAIN-SUFFIX,meta.com
 
 # Add future services below this line.

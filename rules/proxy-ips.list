@@ -47,16 +47,6 @@ IP-CIDR,185.60.216.0/22
 IP-CIDR,185.89.216.0/22
 IP-CIDR,204.15.20.0/22
 
-# Exact WhatsApp/Meta front-door addresses outside the aggregate Meta ranges.
-IP-CIDR,3.33.221.48/32
-IP-CIDR,3.33.252.61/32
-IP-CIDR,15.197.206.217/32
-IP-CIDR,15.197.210.208/32
-IP-CIDR,34.192.181.12/32
-IP-CIDR,34.193.38.112/32
-IP-CIDR,34.194.71.217/32
-IP-CIDR,34.194.255.230/32
-
 # Do not add whole Cloudflare or Google ranges for Discord: they are shared by
 # many unrelated services. Meta is intentionally broader because the older
 # working WhatsApp profile required its shared media and calling networks.

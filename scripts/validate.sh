@@ -70,17 +70,33 @@ grep -qx 'IP-CIDR,157.240.0.0/17' "$project_dir/rules/proxy-ips.list" || \
 
 for profile in "$project_dir/happ/routing.json" "$project_dir/incy/routing.json"; do
   if command -v jq >/dev/null 2>&1; then
-    jq -e '
+    jq -e \
+      --rawfile proxy_domains "$project_dir/rules/proxy-domains.list" \
+      --rawfile proxy_ips "$project_dir/rules/proxy-ips.list" \
+      --rawfile apple_proxy "$project_dir/rules/proxy-apple-services.list" '
+      def active($rules):
+        $rules
+        | split("\n")
+        | map(gsub("^[[:space:]]+|[[:space:]]+$"; ""))
+        | map(select(length > 0))
+        | map(select(startswith("#") | not));
+      def sites($rules):
+        active($rules)
+        | map(split(","))
+        | map(if .[0] == "DOMAIN" then "full:" + .[1]
+              elif .[0] == "DOMAIN-SUFFIX" then "domain:" + .[1]
+              else error("unsupported domain rule") end);
+      def ips($rules): active($rules) | map(split(",")[1]);
+
+      (sites($proxy_domains) + sites($apple_proxy) + ["geosite:russia-inside"]) as $expected_sites
+      | ips($proxy_ips) as $expected_ips
+      |
       .GlobalProxy == "false" and
       .RouteOrder == "block-proxy-direct" and
-      (.ProxySites | index("geosite:russia-inside") != null) and
-      (.ProxySites | index("domain:telegram.org") != null) and
-      (.ProxySites | index("domain:discord.com") != null) and
-      (.ProxySites | index("domain:whatsapp.com") != null) and
-      (.ProxySites | index("domain:fbcdn.net") != null) and
-      (.ProxySites | index("full:amp-api-updates.apps.apple.com") != null) and
-      (.ProxyIp | index("185.76.151.0/24") != null) and
-      (.ProxyIp | index("157.240.0.0/17") != null) and
+      ((.ProxySites | sort) == ($expected_sites | sort)) and
+      ((.ProxyIp | sort) == ($expected_ips | sort)) and
+      ((.ProxySites | unique | length) == (.ProxySites | length)) and
+      ((.ProxyIp | unique | length) == (.ProxyIp | length)) and
       (.DirectIp | index("17.0.0.0/8") != null) and
       (.LastUpdated | test("^[0-9]+$"))
     ' "$profile" >/dev/null || fail "invalid or incomplete routing profile in $profile"
