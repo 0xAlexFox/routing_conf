@@ -4,6 +4,7 @@
 
 # App Store catalog and configuration.
 DOMAIN,amp-api-edge.apps.apple.com
+DOMAIN,amp-api-updates.apps.apple.com
 DOMAIN,bag.itunes.apple.com
 DOMAIN,pd.itunes.apple.com
 DOMAIN,itunes.apple.com
