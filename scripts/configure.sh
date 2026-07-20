@@ -2,15 +2,15 @@
 set -eu
 
 usage() {
-  echo "Usage: $0 GITHUB_OWNER [REPOSITORY] [BRANCH]" >&2
+  echo "Usage: $0 [GITHUB_OWNER] [REPOSITORY] [BRANCH]" >&2
   exit 2
 }
 
-[ "$#" -ge 1 ] && [ "$#" -le 3 ] || usage
+[ "$#" -le 3 ] || usage
 
-owner=$1
-repository=${2:-routing}
-branch=${3:-main}
+owner=${1:-0xAlexFox}
+repository=${2:-routing_conf}
+branch=${3:-master}
 
 case "$owner/$repository/$branch" in
   *[!A-Za-z0-9._/-]*)
@@ -22,7 +22,7 @@ esac
 project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 template="$project_dir/routing.conf.template"
 output="$project_dir/routing.conf"
-raw_base="https://raw.githubusercontent.com/$owner/$repository/$branch"
+raw_base="https://raw.githubusercontent.com/$owner/$repository/refs/heads/$branch"
 temp_file=$(mktemp "${TMPDIR:-/tmp}/routing.conf.XXXXXX")
 trap 'rm -f "$temp_file"' EXIT HUP INT TERM
 

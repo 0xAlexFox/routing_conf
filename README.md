@@ -22,13 +22,13 @@
 
 ## Подготовка перед публикацией
 
-В URL удалённых локальных правил нужен владелец GitHub-репозитория. Один раз сгенерируйте итоговый конфиг:
+Проект уже настроен для публичного репозитория `0xAlexFox/routing_conf`, ветка `master`. Для повторной генерации итогового конфига выполните:
 
 ```sh
-./scripts/configure.sh GITHUB_LOGIN
+./scripts/configure.sh
 ```
 
-По умолчанию предполагаются репозиторий `routing`, ветка `main`. Другие значения:
+Если репозиторий когда-нибудь изменится, передайте новые значения явно:
 
 ```sh
 ./scripts/configure.sh GITHUB_LOGIN REPOSITORY BRANCH
@@ -48,7 +48,7 @@
 2. Откройте `Конфигурация` → `+` → `Скачать файл` и вставьте:
 
    ```text
-   https://raw.githubusercontent.com/GITHUB_LOGIN/routing/main/routing.conf
+   https://raw.githubusercontent.com/0xAlexFox/routing_conf/refs/heads/master/routing.conf
    ```
 
 3. Выберите скачанный `routing.conf` → `Использовать конфигурацию`.

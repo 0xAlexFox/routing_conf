@@ -26,6 +26,14 @@ if [ "$allow_placeholder" = false ] && grep -q 'CHANGE_ME\|__RAW_BASE_URL__' "$c
   fail "run scripts/configure.sh with your GitHub owner before publishing"
 fi
 
+update_url=$(sed -n 's/^update-url = //p' "$config")
+[ -n "$update_url" ] || fail "update-url is missing"
+raw_base=${update_url%/routing.conf}
+grep -Fqx "RULE-SET,$raw_base/rules/proxy-domains.list,PROXY,force-remote-dns" "$config" || \
+  fail "proxy-domains.list URL does not match update-url"
+grep -Fqx "RULE-SET,$raw_base/rules/proxy-ips.list,PROXY,no-resolve" "$config" || \
+  fail "proxy-ips.list URL does not match update-url"
+
 validate_rule_file() {
   rule_file=$1
   awk '
