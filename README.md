@@ -1,9 +1,9 @@
-# Выборочная маршрутизация Shadowrocket
+# Выборочная маршрутизация Shadowrocket, Happ и INCY
 
 Проект отправляет через выбранный в Shadowrocket прокси только:
 
 - весь актуальный список `Russia/inside-clashx.lst` проекта itdoginfo;
-- Telegram, WhatsApp и Discord (домены Telegram/Discord обновляются из отдельных списков itdoginfo, IP Telegram и домены WhatsApp хранятся локально);
+- Telegram, WhatsApp и Discord (в Shadowrocket домены Telegram/Discord обновляются из отдельных списков itdoginfo; в профилях Happ/INCY они перечислены явно для независимости от нестандартных тегов `geosite`);
 - будущие ресурсы, добавленные в `rules/proxy-domains.list` или `rules/proxy-ips.list`.
 
 Любой другой трафик совпадает с последним правилом `FINAL,DIRECT` и идёт напрямую через интернет-провайдера.
@@ -90,3 +90,17 @@ IP-CIDR,203.0.113.0/24
 - [Справочник правил и порядка маршрутизации Surge](https://manual.nssurge.com/) — синтаксис совместим с используемой частью формата Shadowrocket
 
 `itdoginfo` подключён напрямую из исходного репозитория и не копируется сюда: так список остаётся актуальным, а его распространение и лицензирование остаются у автора.
+
+## Другие клиенты
+
+- [`happ/`](happ/) — JSON-профиль Happ и готовый `happ://` deeplink;
+- [`incy/`](incy/) — JSON-профиль INCY, разовый deeplink и autorouting-ссылка с автообновлением из GitHub.
+
+В профилях Happ и INCY сначала проверяются все proxy-исключения
+(`russia-inside`, мессенджеры и точечные Apple CDN), затем общие прямые
+правила Apple; весь не совпавший трафик также идёт напрямую. Перегенерация
+deeplink-файлов:
+
+```sh
+./scripts/build-client-profiles.sh
+```

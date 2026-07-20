@@ -56,4 +56,20 @@ validate_rule_file "$project_dir/rules/proxy-ips.list"
 validate_rule_file "$project_dir/rules/direct-apple.list"
 validate_rule_file "$project_dir/rules/proxy-apple-services.list"
 
+for profile in "$project_dir/happ/routing.json" "$project_dir/incy/routing.json"; do
+  if command -v jq >/dev/null 2>&1; then
+    jq -e '
+      .GlobalProxy == "false" and
+      .RouteOrder == "block-proxy-direct" and
+      (.ProxySites | index("geosite:russia-inside") != null) and
+      (.ProxySites | index("domain:telegram.org") != null) and
+      (.ProxySites | index("domain:discord.com") != null) and
+      (.ProxySites | index("domain:whatsapp.com") != null) and
+      (.ProxySites | index("full:amp-api-updates.apps.apple.com") != null) and
+      (.DirectIp | index("17.0.0.0/8") != null) and
+      (.LastUpdated | test("^[0-9]+$"))
+    ' "$profile" >/dev/null || fail "invalid or incomplete routing profile in $profile"
+  fi
+done
+
 echo "Configuration and local rule files are valid."
