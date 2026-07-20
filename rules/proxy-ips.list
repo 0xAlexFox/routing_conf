@@ -8,6 +8,8 @@ IP-CIDR,91.108.8.0/21
 IP-CIDR,91.108.16.0/21
 IP-CIDR,91.108.56.0/22
 IP-CIDR,149.154.160.0/20
+IP-CIDR,91.105.192.0/23
+IP-CIDR,185.76.151.0/24
 
 # Telegram IPv6
 IP-CIDR6,2001:67c:4e8::/48
@@ -15,5 +17,46 @@ IP-CIDR6,2001:b28:f23c::/48
 IP-CIDR6,2001:b28:f23d::/48
 IP-CIDR6,2001:b28:f23f::/48
 
-# Do not add whole Cloudflare/Google/Meta ranges for Discord or WhatsApp here:
-# they are shared with unrelated services and would over-proxy traffic.
+# Meta networks used by WhatsApp media, calls and supporting APIs. These are
+# the aggregate ranges from the older working profile; narrow host rules that
+# are already covered by these aggregates were intentionally omitted.
+IP-CIDR,31.13.24.0/21
+IP-CIDR,31.13.64.0/18
+IP-CIDR,45.64.40.0/22
+IP-CIDR,57.141.0.0/24
+IP-CIDR,57.141.2.0/24
+IP-CIDR,57.141.4.0/24
+IP-CIDR,57.141.6.0/24
+IP-CIDR,57.141.8.0/24
+IP-CIDR,57.141.10.0/24
+IP-CIDR,57.141.12.0/24
+IP-CIDR,57.144.0.0/14
+IP-CIDR,66.220.144.0/20
+IP-CIDR,69.63.176.0/20
+IP-CIDR,69.171.224.0/19
+IP-CIDR,74.119.76.0/22
+IP-CIDR,102.132.96.0/20
+IP-CIDR,103.4.96.0/22
+IP-CIDR,129.134.0.0/17
+IP-CIDR,157.240.0.0/17
+IP-CIDR,157.240.192.0/18
+IP-CIDR,163.70.128.0/17
+IP-CIDR,173.252.64.0/18
+IP-CIDR,179.60.192.0/22
+IP-CIDR,185.60.216.0/22
+IP-CIDR,185.89.216.0/22
+IP-CIDR,204.15.20.0/22
+
+# Exact WhatsApp/Meta front-door addresses outside the aggregate Meta ranges.
+IP-CIDR,3.33.221.48/32
+IP-CIDR,3.33.252.61/32
+IP-CIDR,15.197.206.217/32
+IP-CIDR,15.197.210.208/32
+IP-CIDR,34.192.181.12/32
+IP-CIDR,34.193.38.112/32
+IP-CIDR,34.194.71.217/32
+IP-CIDR,34.194.255.230/32
+
+# Do not add whole Cloudflare or Google ranges for Discord: they are shared by
+# many unrelated services. Meta is intentionally broader because the older
+# working WhatsApp profile required its shared media and calling networks.

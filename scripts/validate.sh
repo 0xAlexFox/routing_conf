@@ -21,6 +21,9 @@ fail() {
 grep -qx '\[General\]' "$config" || fail "[General] section is missing"
 grep -qx '\[Rule\]' "$config" || fail "[Rule] section is missing"
 grep -qx 'FINAL,DIRECT' "$config" || fail "FINAL,DIRECT is missing"
+grep -qx 'block-quic = all-proxy' "$config" || fail "proxy QUIC fallback setting is missing"
+grep -q '^always-raw-tcp-hosts = .*\*\.whatsapp\.com:443' "$config" || \
+  fail "WhatsApp raw TCP setting is missing"
 
 if [ "$allow_placeholder" = false ] && grep -q 'CHANGE_ME\|__RAW_BASE_URL__' "$config"; then
   fail "run scripts/configure.sh with your GitHub owner before publishing"
@@ -56,6 +59,15 @@ validate_rule_file "$project_dir/rules/proxy-ips.list"
 validate_rule_file "$project_dir/rules/direct-apple.list"
 validate_rule_file "$project_dir/rules/proxy-apple-services.list"
 
+grep -qx 'DOMAIN-SUFFIX,telegram-cdn.org' "$project_dir/rules/proxy-domains.list" || \
+  fail "Telegram CDN domain rule is missing"
+grep -qx 'DOMAIN-SUFFIX,fbcdn.net' "$project_dir/rules/proxy-domains.list" || \
+  fail "WhatsApp/Meta CDN domain rule is missing"
+grep -qx 'IP-CIDR,185.76.151.0/24' "$project_dir/rules/proxy-ips.list" || \
+  fail "Telegram CDN IP rule is missing"
+grep -qx 'IP-CIDR,157.240.0.0/17' "$project_dir/rules/proxy-ips.list" || \
+  fail "WhatsApp/Meta IP rule is missing"
+
 for profile in "$project_dir/happ/routing.json" "$project_dir/incy/routing.json"; do
   if command -v jq >/dev/null 2>&1; then
     jq -e '
@@ -65,7 +77,10 @@ for profile in "$project_dir/happ/routing.json" "$project_dir/incy/routing.json"
       (.ProxySites | index("domain:telegram.org") != null) and
       (.ProxySites | index("domain:discord.com") != null) and
       (.ProxySites | index("domain:whatsapp.com") != null) and
+      (.ProxySites | index("domain:fbcdn.net") != null) and
       (.ProxySites | index("full:amp-api-updates.apps.apple.com") != null) and
+      (.ProxyIp | index("185.76.151.0/24") != null) and
+      (.ProxyIp | index("157.240.0.0/17") != null) and
       (.DirectIp | index("17.0.0.0/8") != null) and
       (.LastUpdated | test("^[0-9]+$"))
     ' "$profile" >/dev/null || fail "invalid or incomplete routing profile in $profile"

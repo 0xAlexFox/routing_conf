@@ -1,10 +1,61 @@
 # Additional services routed through the proxy.
 # Syntax: DOMAIN or DOMAIN-SUFFIX without a policy; routing.conf supplies PROXY.
 
-# WhatsApp
+# Telegram
+DOMAIN-SUFFIX,cdn-telegram.org
+DOMAIN-SUFFIX,comments.app
+DOMAIN-SUFFIX,contest.com
+DOMAIN-SUFFIX,fragment.com
+DOMAIN-SUFFIX,graph.org
+DOMAIN-SUFFIX,quiz.directory
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,tdesktop.com
+DOMAIN-SUFFIX,telega.one
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,telegram-cdn.org
+DOMAIN-SUFFIX,telegram.dog
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,telegram.space
+DOMAIN-SUFFIX,telesco.pe
+DOMAIN-SUFFIX,tg.dev
+DOMAIN-SUFFIX,ton.org
+DOMAIN-SUFFIX,tx.me
+DOMAIN-SUFFIX,usercontent.dev
+
+# Discord
+DOMAIN-SUFFIX,dis.gd
+DOMAIN-SUFFIX,discord-activities.com
+DOMAIN-SUFFIX,discord.co
+DOMAIN-SUFFIX,discord.com
+DOMAIN-SUFFIX,discord.design
+DOMAIN-SUFFIX,discord.dev
+DOMAIN-SUFFIX,discord.gg
+DOMAIN-SUFFIX,discord.gift
+DOMAIN-SUFFIX,discord.gifts
+DOMAIN-SUFFIX,discord.media
+DOMAIN-SUFFIX,discord.new
+DOMAIN-SUFFIX,discord.store
+DOMAIN-SUFFIX,discord.tools
+DOMAIN-SUFFIX,discordactivities.com
+DOMAIN-SUFFIX,discordapp.com
+DOMAIN-SUFFIX,discordapp.net
+DOMAIN-SUFFIX,discordmerch.com
+DOMAIN-SUFFIX,discordpartygames.com
+DOMAIN-SUFFIX,discordsays.com
+DOMAIN,discord-attachments-uploads-prd.storage.googleapis.com
+
+# WhatsApp and the shared Meta infrastructure it uses.
 DOMAIN-SUFFIX,wa.me
 DOMAIN-SUFFIX,whatsapp.biz
 DOMAIN-SUFFIX,whatsapp.com
 DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbsbx.com
+DOMAIN-SUFFIX,internalfb.com
+DOMAIN-SUFFIX,meta.com
 
 # Add future services below this line.
