@@ -1,0 +1,15 @@
+# Minimal Apple Music/App Store exceptions routed through the proxy.
+# PacketTunnel log evidence: direct TCP connections to these exact hosts
+# repeatedly timed out after about 5 seconds, while other Apple hosts worked.
+
+# App Store catalog and configuration.
+DOMAIN,amp-api-edge.apps.apple.com
+DOMAIN,bag.itunes.apple.com
+DOMAIN,pd.itunes.apple.com
+DOMAIN,itunes.apple.com
+
+# Apple Music catalog.
+DOMAIN,amp-api.music.apple.com
+
+# App Store / Music static assets.
+DOMAIN,is1-ssl.mzstatic.com

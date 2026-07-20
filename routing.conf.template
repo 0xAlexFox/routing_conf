@@ -18,6 +18,9 @@ udp-policy-not-supported-behaviour = REJECT
 update-url = __RAW_BASE_URL__/routing.conf
 
 [Rule]
+# Apple Music/App Store CDN endpoints unreachable through the ISP.
+RULE-SET,__RAW_BASE_URL__/rules/proxy-apple-services.list,PROXY,force-remote-dns
+
 # Apple must be evaluated before every proxy rule.
 RULE-SET,__RAW_BASE_URL__/rules/direct-apple.list,DIRECT,no-resolve
 

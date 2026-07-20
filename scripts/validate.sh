@@ -35,6 +35,8 @@ grep -Fqx "RULE-SET,$raw_base/rules/proxy-ips.list,PROXY,no-resolve" "$config" |
   fail "proxy-ips.list URL does not match update-url"
 grep -Fqx "RULE-SET,$raw_base/rules/direct-apple.list,DIRECT,no-resolve" "$config" || \
   fail "direct-apple.list URL does not match update-url"
+grep -Fqx "RULE-SET,$raw_base/rules/proxy-apple-services.list,PROXY,force-remote-dns" "$config" || \
+  fail "proxy-apple-services.list URL does not match update-url"
 
 validate_rule_file() {
   rule_file=$1
@@ -52,5 +54,6 @@ validate_rule_file() {
 validate_rule_file "$project_dir/rules/proxy-domains.list"
 validate_rule_file "$project_dir/rules/proxy-ips.list"
 validate_rule_file "$project_dir/rules/direct-apple.list"
+validate_rule_file "$project_dir/rules/proxy-apple-services.list"
 
 echo "Configuration and local rule files are valid."
