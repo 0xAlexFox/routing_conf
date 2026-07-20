@@ -1,0 +1,28 @@
+# Apple services that must connect directly through the ISP.
+# Sources:
+# https://support.apple.com/101555
+# https://support.apple.com/102266
+
+# Apple-owned public IPv4 space, including APNs endpoints.
+IP-CIDR,17.0.0.0/8
+
+# Core Apple, account, activation, updates, stores and push services.
+DOMAIN-SUFFIX,apple.com
+DOMAIN-SUFFIX,apple-dns.net
+DOMAIN-SUFFIX,appstore.com
+DOMAIN-SUFFIX,itunes.com
+DOMAIN-SUFFIX,mzstatic.com
+
+# iCloud and Apple content delivery.
+DOMAIN-SUFFIX,apple-cloudkit.com
+DOMAIN-SUFFIX,apple-livephotoskit.com
+DOMAIN-SUFFIX,cdn-apple.com
+DOMAIN-SUFFIX,icloud.com
+DOMAIN-SUFFIX,icloud.com.cn
+DOMAIN-SUFFIX,icloud-content.com
+DOMAIN-SUFFIX,me.com
+
+# Apple media and map assets.
+DOMAIN-SUFFIX,aaplimg.com
+DOMAIN-SUFFIX,apple-mapkit.com
+DOMAIN-SUFFIX,apple.news
