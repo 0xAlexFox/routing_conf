@@ -1,0 +1,10 @@
+# Additional services routed through the proxy.
+# Syntax: DOMAIN or DOMAIN-SUFFIX without a policy; routing.conf supplies PROXY.
+
+# WhatsApp
+DOMAIN-SUFFIX,wa.me
+DOMAIN-SUFFIX,whatsapp.biz
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+
+# Add future services below this line.

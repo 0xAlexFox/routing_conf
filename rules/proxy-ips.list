@@ -1,0 +1,19 @@
+# IP destinations that must use the proxy.
+# Keep no-resolve in routing.conf: resolving every DIRECT hostname just to test
+# an IP range is slower and can cause unwanted DNS side effects.
+
+# Telegram IPv4 (official Telegram CIDR publication)
+IP-CIDR,91.108.4.0/22
+IP-CIDR,91.108.8.0/21
+IP-CIDR,91.108.16.0/21
+IP-CIDR,91.108.56.0/22
+IP-CIDR,149.154.160.0/20
+
+# Telegram IPv6
+IP-CIDR6,2001:67c:4e8::/48
+IP-CIDR6,2001:b28:f23c::/48
+IP-CIDR6,2001:b28:f23d::/48
+IP-CIDR6,2001:b28:f23f::/48
+
+# Do not add whole Cloudflare/Google/Meta ranges for Discord or WhatsApp here:
+# they are shared with unrelated services and would over-proxy traffic.
